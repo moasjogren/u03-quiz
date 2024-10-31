@@ -7,6 +7,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "VT323", sans-serif;
+  border: solid 1px;
 }
 
 :root {
@@ -47,4 +48,15 @@ h1 {
   height: 430px;
   width: 380px;
   border-radius: 15px;
+}
+.quiz-container__gameboard__questions {
+  background-color: var(--background);
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+.quiz-container__gameboard__points {
+  display: flex;
+  justify-content: space-between;
 }
