@@ -1,5 +1,50 @@
-*, *::before, *::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "VT323", sans-serif;
+}
+
+:root {
+  --background: #586f7c;
+  --primary-text: #000;
+  --secondary-text: #2f4550;
+  --quiz-bubble: #b8dbd9;
+  --quiz-container: #f4f4f9;
+}
+
+body {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+h1 {
+  color: var(--quiz-bubble);
+  font-size: 5rem;
+  letter-spacing: 3px;
+  rotate: -20deg;
+  margin-bottom: 3rem;
+}
+
+.quiz-container {
+  /* border: solid; */
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-container__gameboard {
+  background-color: var(--quiz-container);
+  height: 430px;
+  width: 380px;
+  border-radius: 15px;
 }
