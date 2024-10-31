@@ -9,6 +9,10 @@
   font-family: "VT323", sans-serif;
 }
 
+html {
+  font-size: 10px;
+}
+
 :root {
   --background: #586f7c;
   --primary-text: #000;
