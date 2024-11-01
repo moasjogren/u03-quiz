@@ -56,13 +56,6 @@ h1 {
 .quiz-container__life {
   margin: 0 2rem;
 }
-.quiz-container__gameboard__cat-img {
-  width: 4rem;
-  height: 4rem;
-  position: absolute;
-  left: 65%;
-  bottom: 62.5%;
-}
 .quiz-container__gameboard__questions {
   display: flex;
   flex-wrap: wrap;
