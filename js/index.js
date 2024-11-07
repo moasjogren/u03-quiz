@@ -20,11 +20,53 @@ function createCats() {
   let randomCats = getRandomOrder(categories);
   randomCats.forEach((cat) => {
     let genDivs = document.createElement("div");
-    genDivs.style.background = "red";
-    genDivs.innerHTML = cat;
+    let genImg = document.createElement("img");
+    genImg.src = `./img/${cat}.png`;
     document.querySelector(".quiz-container__gameboard__categories").append(genDivs);
+    genDivs.append(genImg);
+    genImg.addEventListener("click", function () {
+      switch (cat) {
+        case "generalKnowledge":
+          getQuestion(generalKnowledge);
+          break;
+        case "geography":
+          getQuestion(geography);
+          break;
+        case "art":
+          getQuestion(art);
+          break;
+        case "sports":
+          getQuestion(sports);
+          break;
+        case "music":
+          getQuestion(music);
+          break;
+        case "history":
+          getQuestion(history);
+          break;
+        case "animals":
+          getQuestion(animals);
+          break;
+        case "science":
+          getQuestion(science);
+          break;
+      }
+    });
   });
 }
+async function getQuestion(cat) {
+  try {
+    const response = await fetch(cat);
+    if (!response.ok) {
+      throw new Error("HTTP" + response.status);
+    }
+    const data = await response.json();
+    console.log(data.results[0].question);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 createCats();
 
 // quiz-container__gameboard__categories
