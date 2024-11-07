@@ -6,7 +6,8 @@ const music = "https://opentdb.com/api.php?amount=1&category=12&type=multiple";
 const history = "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
 const animals = "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
 const science = "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
-
+const lifeElement = document.querySelector(".quiz-container__life");
+const questionBox = document.querySelector(".quiz-container__gameboard__questions");
 // Array med kategorierna
 const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
 
@@ -51,6 +52,7 @@ function createCats() {
           getQuestion(science);
           break;
       }
+      document.querySelector(".card").classList.toggle("flipped");
     });
   });
 }
@@ -61,13 +63,37 @@ async function getQuestion(cat) {
       throw new Error("HTTP" + response.status);
     }
     const data = await response.json();
-    console.log(data.results[0].question);
+    genQuestion(data.results[0]);
   } catch (error) {
     console.log(error);
   }
 }
 
+function genQuestion(data) {
+  const question = data.question;
+  const questionTitle = document.createElement("h2");
+  questionTitle.classList.add("question");
+  questionTitle.innerHTML = question;
+  questionBox.append(questionTitle);
+  const rightAnswer = data.correct_answer;
+  const options = [...data.incorrect_answers, rightAnswer];
+  const randomOrder = getRandomOrder(options);
+  randomOrder.forEach((text) => {
+    const option = document.createElement("div");
+    option.classList.add("answer");
+    option.innerHTML = text;
+    questionBox.append(option);
+  });
+}
+
 createCats();
+
+// Game over-state nedan
+const gaga = new Health(lifeElement, () => {
+  console.log("game over");
+});
+
+window.gaga = gaga;
 
 // quiz-container__gameboard__categories
 // Nummer för  alla kategorier:
