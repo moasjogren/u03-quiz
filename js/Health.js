@@ -41,14 +41,3 @@ class Health {
     }
   }
 }
-
-/*
-
-const lifeElement = document.querySelector(".quiz-container__life");
-
-const gaga = new Health(lifeElement, () => {
-  console.log("game over");
-});
-
-window.gaga = gaga;
-*/
