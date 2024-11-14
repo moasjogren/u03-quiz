@@ -15,6 +15,16 @@ const lifeElement = document.querySelector(".quiz-container__life");
 const questionBox = document.querySelector(
   ".quiz-container__gameboard__questions"
 );
+const currentScore = document.querySelector(
+  ".quiz-container__gameboard__points__score"
+);
+const highScore = document.querySelector(".highscore");
+
+let score = 0;
+
+if (localStorage.getItem("highscore"))
+  highScore.innerHTML = localStorage.getItem("highscore");
+
 // Array med kategorierna
 const categories = [
   "generalKnowledge",
@@ -124,6 +134,15 @@ const gaga = new Health(lifeElement, () => {
   console.log("game over");
 });
 
+function updateScore() {
+  localStorage.setItem("highscore", 12);
+  score++;
+
+  currentScore.innerHTML = `Score: ${score}`;
+  if (score > localStorage.getItem("highscore")) {
+    localStorage.setItem("highscore", score);
+  }
+}
 window.gaga = gaga;
 
 // quiz-container__gameboard__categories
