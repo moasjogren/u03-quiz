@@ -59,16 +59,20 @@ h1 {
 }
 .quiz-container__life {
   margin-top: -40px;
+  position: absolute;
+  right: 0;
 }
 .quiz-container__gameboard__cat {
   margin-top: -60px;
 }
 .cat-image {
   transition: all 0.2s linear;
+  position: absolute;
+
 }
 .quiz-container__gameboard {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
   background-color: var(--quiz-container);
   margin: 0 2rem;
@@ -77,6 +81,7 @@ h1 {
   box-shadow: 0 0.2rem 0.1rem rgba(0, 0, 0, 0.5);
   height: 700px;
   width: 600px;
+  position: relative;
 }
 
 .card {
@@ -88,6 +93,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 20px;
 }
 
 .quiz-container__gameboard__categories,
@@ -141,7 +147,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  align-self: flex-end;
+  /* align-self: flex-end; */
 }
 .quiz-container__gameboard__question-img-1 {
   width: 50%;
@@ -154,7 +160,21 @@ h1 {
   font-size: 3rem;
 }
 
-/* Testar färger */
+.quiz-container__gameboard__timer{
+  width: 100%;
+  height: 1rem;
+  margin-top: 5rem;
+  color: #0ea5e9;
+  background-color: gray;
+border-radius: 50px;
+}
+
+#timer{
+height: 100%;
+border-radius: inherit;
+}
+
+/* Färger */
 
 .generalKnowledge {
   background-color: #007eff;
@@ -182,15 +202,27 @@ h1 {
 }
 .music {
   background-color: #ff1600;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #770d03;
 }
 .history {
   background-color: #fd02ff;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #8b048b;
 }
 .animals {
   background-color: #ffe700;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #c2b00d;
 }
 .science {
   background-color: #3cb5c2;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #116d77;
 }
 
 .bubble {
