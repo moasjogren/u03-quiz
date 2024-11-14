@@ -51,7 +51,13 @@ h1 {
   font-size: 2rem;
 }
 .quiz-container__life {
-  margin: 0 2rem;
+  margin: -40px 2rem 0 2rem;
+}
+.quiz-container__gameboard__cat {
+  margin-top: -60px;
+}
+.cat-image {
+  transition: all 0.2s linear;
 }
 .quiz-container__gameboard {
   display: flex;
