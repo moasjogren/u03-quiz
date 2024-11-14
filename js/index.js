@@ -1,20 +1,45 @@
-const generalKnowledge = "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
-const geography = "https://opentdb.com/api.php?amount=1&category=22&type=multiple";
+const generalKnowledge =
+  "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
+const geography =
+  "https://opentdb.com/api.php?amount=1&category=22&type=multiple";
 const art = "https://opentdb.com/api.php?amount=1&category=25&type=multiple";
 const sports = "https://opentdb.com/api.php?amount=1&category=21&type=multiple";
 const music = "https://opentdb.com/api.php?amount=1&category=12&type=multiple";
-const history = "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
-const animals = "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
-const science = "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
+const history =
+  "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
+const animals =
+  "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
+const science =
+  "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
 const lifeElement = document.querySelector(".quiz-container__life");
-const questionBox = document.querySelector(".quiz-container__gameboard__questions");
+const questionBox = document.querySelector(
+  ".quiz-container__gameboard__questions"
+);
 // Array med kategorierna
-const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
+const categories = [
+  "generalKnowledge",
+  "geography",
+  "art",
+  "sports",
+  "music",
+  "history",
+  "animals",
+  "science",
+];
 
 // Funktion för slumpmässigt val av 4 kategorier
 function getRandomOrder(arr) {
   let randomArray = arr.sort(() => Math.random() - 0.5).slice(0, 4);
   return randomArray;
+}
+
+function changeCatImg(img) {
+  const catImg = document.querySelector(".cat-image");
+  catImg.src = `./img/cat${img}.png`;
+  catImg.style.scale = "0.3";
+  setTimeout(() => {
+    catImg.style.scale = "1";
+  }, 250);
 }
 
 function createCats() {
@@ -23,7 +48,9 @@ function createCats() {
     let genDivs = document.createElement("div");
     let genImg = document.createElement("img");
     genImg.src = `./img/${cat}.png`;
-    document.querySelector(".quiz-container__gameboard__categories").append(genDivs);
+    document
+      .querySelector(".quiz-container__gameboard__categories")
+      .append(genDivs);
     genDivs.append(genImg);
     genDivs.classList.add(cat);
     genDivs.classList.add("bubble");
@@ -56,6 +83,7 @@ function createCats() {
           break;
       }
       document.querySelector(".card").classList.toggle("flipped");
+      changeCatImg(1);
     });
   });
 }
