@@ -205,7 +205,7 @@ function startCountdown() {
         document.getElementById("timer").style.backgroundColor = "#0ea5e9";
       }
       secondsLeft -= 1;
-      document.getElementById("start-btn").textContent = secondsLeft;
+      // document.getElementById("start-btn").textContent = secondsLeft;
       document.getElementById("timer").style.width = `${(secondsLeft / quizDuration) * 100}%`;
     } else {
       alert("Time's up! You can allways take the quiz again!");
@@ -221,3 +221,5 @@ function addTime() {
     secondsLeft = quizDuration;
   }
 }
+
+startCountdown()
