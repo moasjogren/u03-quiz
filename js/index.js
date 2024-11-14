@@ -7,8 +7,22 @@ const history = "https://opentdb.com/api.php?amount=1&category=23&type=multiple"
 const animals = "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
 const science = "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
 const lifeElement = document.querySelector(".quiz-container__life");
-const questionBox = document.querySelector(".quiz-container__gameboard__questions");
+
+const questionBox = document.querySelector(
+  ".quiz-container__gameboard__questions"
+);
+const currentScore = document.querySelector(
+  ".quiz-container__gameboard__points__score"
+);
+const highScore = document.querySelector(".highscore");
+
+let score = 0;
+
+if (localStorage.getItem("highscore"))
+  highScore.innerHTML = localStorage.getItem("highscore");
+
 const displayCategory = document.querySelector(".quiz-container__gameboard__categories-h2");
+
 
 // Array med kategorierna
 const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
@@ -116,6 +130,15 @@ const gaga = new Health(lifeElement, () => {
   console.log("game over");
 });
 
+function updateScore() {
+  localStorage.setItem("highscore", 12);
+  score++;
+
+  currentScore.innerHTML = `Score: ${score}`;
+  if (score > localStorage.getItem("highscore")) {
+    localStorage.setItem("highscore", score);
+  }
+}
 window.gaga = gaga;
 
 // quiz-container__gameboard__categories
