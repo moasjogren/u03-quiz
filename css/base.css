@@ -45,6 +45,7 @@ h1 {
   letter-spacing: 3px;
   rotate: -10deg;
   margin-bottom: 3rem;
+  text-shadow: 0 5px white, 0 5px var(--quiz-bubble);
 }
 
 .quiz-container {
@@ -129,6 +130,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px black solid;
 }
 
 .flipped {
@@ -156,15 +158,27 @@ h1 {
 
 .generalKnowledge {
   background-color: #007eff;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #04386b;
 }
 .geography {
   background-color: #ffa701;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #926003;
 }
 .art {
   background-color: #9b00ff;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #38035b;
 }
 .sports {
   background-color: #27d82f;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: #17781c;
 }
 .music {
   background-color: #ff1600;
@@ -185,14 +199,12 @@ h1 {
   height: 250px;
   display: flex;
   justify-content: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   cursor: pointer;
 }
 .bubble:active {
   scale: 0.95;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .bubble__img {

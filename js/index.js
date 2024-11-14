@@ -8,21 +8,15 @@ const animals = "https://opentdb.com/api.php?amount=1&category=27&type=multiple"
 const science = "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
 const lifeElement = document.querySelector(".quiz-container__life");
 
-const questionBox = document.querySelector(
-  ".quiz-container__gameboard__questions"
-);
-const currentScore = document.querySelector(
-  ".quiz-container__gameboard__points__score"
-);
+const questionBox = document.querySelector(".quiz-container__gameboard__questions");
+const currentScore = document.querySelector(".quiz-container__gameboard__points__score");
 const highScore = document.querySelector(".highscore");
 
 let score = 0;
 
-if (localStorage.getItem("highscore"))
-  highScore.innerHTML = localStorage.getItem("highscore");
+if (localStorage.getItem("highscore")) highScore.innerHTML = localStorage.getItem("highscore");
 
 const displayCategory = document.querySelector(".quiz-container__gameboard__categories-h2");
-
 
 // Array med kategorierna
 const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
@@ -120,6 +114,31 @@ function genQuestion(data) {
     option.classList.add("answer");
     option.innerHTML = text;
     questionBox.append(option);
+    option.addEventListener("click", (e) => {
+      checkAnswer(text, rightAnswer);
+      showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
+      console.log(e.target);
+    });
+  });
+}
+
+function checkAnswer(correct, guess) {
+  if (guess === correct) {
+    addTime();
+    updateScore();
+    console.log("CORRECT");
+  } else {
+    console.log("WRONG");
+  }
+}
+
+function showCorrectAnswer(array, correct) {
+  array.forEach((text) => {
+    if (text.innerHTML === correct) {
+      text.style.backgroundColor = "green";
+    } else {
+      text.style.backgroundColor = "red";
+    }
   });
 }
 
@@ -131,7 +150,6 @@ const gaga = new Health(lifeElement, () => {
 });
 
 function updateScore() {
-  localStorage.setItem("highscore", 12);
   score++;
 
   currentScore.innerHTML = `Score: ${score}`;
@@ -166,42 +184,40 @@ const categories = {
 */
 
 //globala variablar
-const quizDuration = 10
-let secondsLeft
-let countdownInterval
-const timeAddedByRightAnswer = 3
-let timerInProgress = false
+const quizDuration = 10;
+let secondsLeft;
+let countdownInterval;
+const timeAddedByRightAnswer = 3;
+let timerInProgress = false;
 
 function startCountdown() {
-  if (timerInProgress) return
-  timerInProgress = true
-  secondsLeft = quizDuration
-  document.querySelector('#timer').style.width = '100%'
-  document.getElementById('timer').style.backgroundColor = '#0ea5e9'
+  if (timerInProgress) return;
+  timerInProgress = true;
+  secondsLeft = quizDuration;
+  document.querySelector("#timer").style.width = "100%";
+  document.getElementById("timer").style.backgroundColor = "#0ea5e9";
 
   countdownInterval = setInterval(() => {
     if (secondsLeft > 0) {
       if (secondsLeft === 6) {
-        document.getElementById('timer').style.backgroundColor = '#ff0000'
+        document.getElementById("timer").style.backgroundColor = "#ff0000";
       } else if (secondsLeft > 6) {
-        document.getElementById('timer').style.backgroundColor = '#0ea5e9'
+        document.getElementById("timer").style.backgroundColor = "#0ea5e9";
       }
-      secondsLeft -= 1
-      document.getElementById('start-btn').textContent = secondsLeft
-      document.getElementById('timer').style.width = `${
-        (secondsLeft / quizDuration) * 100
-      }%`
+      secondsLeft -= 1;
+      document.getElementById("start-btn").textContent = secondsLeft;
+      document.getElementById("timer").style.width = `${(secondsLeft / quizDuration) * 100}%`;
     } else {
-      alert("Time's up! You can allways take the quiz again!")
-      timerInProgress = false
-      clearInterval(countdownInterval)
+      alert("Time's up! You can allways take the quiz again!");
+      timerInProgress = false;
+      clearInterval(countdownInterval);
     }
-  }, 1000)
+  }, 1000);
 }
 
 function addTime() {
-  secondsLeft += timeAddedByRightAnswer
+  secondsLeft += timeAddedByRightAnswer;
   if (secondsLeft > quizDuration) {
-    secondsLeft = quizDuration
+    secondsLeft = quizDuration;
   }
 }
