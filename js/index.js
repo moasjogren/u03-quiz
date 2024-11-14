@@ -25,6 +25,9 @@ function createCats() {
     genImg.src = `./img/${cat}.png`;
     document.querySelector(".quiz-container__gameboard__categories").append(genDivs);
     genDivs.append(genImg);
+    genDivs.classList.add(cat);
+    genDivs.classList.add("bubble");
+    genImg.classList.add("bubble__img");
     genImg.addEventListener("click", function () {
       switch (cat) {
         case "generalKnowledge":

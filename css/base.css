@@ -7,7 +7,6 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "VT323", sans-serif;
-  /* border: solid 1px; */
 }
 
 html {
@@ -15,11 +14,19 @@ html {
 }
 
 :root {
-  --background: #586f7c;
+  --background: #03256c;
   --primary-text: #000;
-  --secondary-text: #2f4550;
-  --quiz-bubble: #b8dbd9;
+  --secondary-text: #2541b2;
+  --quiz-bubble: #f18f01;
   --quiz-container: #f4f4f9;
+  --generalKnowledge-color: #007eff;
+  --geography-color: #ffa701;
+  --art-color: #9b00ff;
+  --sports-color: #27d82f;
+  --music-color: #ff1600;
+  --history-color: #fd02ff;
+  --animals-color: #ffe700;
+  --science-color: #3cb5c2;
 }
 
 body {
@@ -63,6 +70,7 @@ h1 {
   border-radius: 1.5rem;
   box-shadow: 0 0.2rem 0.1rem rgba(0, 0, 0, 0.5);
   height: 500px;
+  width: 600px;
 }
 
 .card {
@@ -71,7 +79,9 @@ h1 {
   transition: all 1s;
   height: 40rem;
   width: 100%;
-  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .quiz-container__gameboard__categories,
@@ -115,10 +125,6 @@ h1 {
   transform: rotateY(180deg);
 }
 
-.quiz-container__gameboard__categories img {
-  width: 70%;
-}
-
 .quiz-container__gameboard__points {
   display: flex;
   justify-content: space-between;
@@ -133,5 +139,46 @@ h1 {
 }
 .quiz-container__gameboard__points__score,
 .quiz-container__gameboard__points__high-score {
-  font-size: 1.1rem;
+  font-size: 3rem;
+}
+
+/* Testar färger */
+
+.generalKnowledge {
+  background-color: #007eff;
+}
+.geography {
+  background-color: #ffa701;
+}
+.art {
+  background-color: #9b00ff;
+}
+.sports {
+  background-color: #27d82f;
+}
+.music {
+  background-color: #ff1600;
+}
+.history {
+  background-color: #fd02ff;
+}
+.animals {
+  background-color: #ffe700;
+}
+.science {
+  background-color: #3cb5c2;
+}
+
+.bubble {
+  border-radius: 15px;
+  margin: 5px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.bubble__img {
+  object-fit: contain;
+  width: 50%;
 }
