@@ -138,9 +138,11 @@ function genQuestion(data) {
       if (currentRound === 3) {
         setTimeout(() => {
           newRound();
-        }, 1000);
+        }, 5000);
       } else {
-        getQuestion(currentCat);
+        setTimeout(() => {
+          getQuestion(currentCat);
+        }, 5000);
       }
     });
   });
