@@ -14,6 +14,8 @@ const highScore = document.querySelector(".highscore");
 
 let score = 0;
 
+document.querySelector(".quiz-container__gameboard__timer").style.display = "none";
+
 if (localStorage.getItem("highscore")) highScore.innerHTML = localStorage.getItem("highscore");
 
 const displayCategory = document.querySelector(".quiz-container__gameboard__categories-h2");
@@ -101,6 +103,7 @@ async function getQuestion(cat) {
 }
 
 function genQuestion(data) {
+  startCountdown();
   const question = data.question;
   const questionTitle = document.createElement("h2");
   questionTitle.classList.add("question");
@@ -191,6 +194,7 @@ const timeAddedByRightAnswer = 3;
 let timerInProgress = false;
 
 function startCountdown() {
+  document.querySelector(".quiz-container__gameboard__timer").style.display = "block";
   if (timerInProgress) return;
   timerInProgress = true;
   secondsLeft = quizDuration;
@@ -221,5 +225,3 @@ function addTime() {
     secondsLeft = quizDuration;
   }
 }
-
-startCountdown()
