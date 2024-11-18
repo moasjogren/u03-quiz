@@ -129,15 +129,16 @@ function genQuestion(data) {
   });
 }
 
-function checkAnswer(correct, guess, cat, data) {
+function checkAnswer(correct, guess) {
   if (guess === correct) {
     addTime();
     updateScore();
     console.log("CORRECT");
     setTimeout(() => {
       document.querySelector(".card").classList.toggle("flipped");
-      getQuestion(cat);
-      genQuestion(data);
+      getQuestion();
+      console.log("guess", guess);
+      console.log("correct", correct);
     }, 2000);
   } else {
     // saknad av modul i js script länk
@@ -147,15 +148,17 @@ function checkAnswer(correct, guess, cat, data) {
     console.log("WRONG");
     setTimeout(() => {
       document.querySelector(".card").classList.toggle("flipped");
-      getQuestion(cat);
-      genQuestion(data);
+      getQuestion();
+      console.log("guess", guess);
+      console.log("correct", correct);
     }, 2000);
   }
 }
 
 function showCorrectAnswer(array, correct) {
+  const doc = new DOMParser().parseFromString(correct, "text/html");
   array.forEach((text) => {
-    if (text.innerHTML === correct) {
+    if (text.innerHTML === doc.documentElement.textContent) {
       text.style.backgroundColor = "green";
     } else {
       text.style.backgroundColor = "red";
