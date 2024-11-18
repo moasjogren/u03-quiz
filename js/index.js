@@ -19,7 +19,66 @@ if (localStorage.getItem("highscore")) highScore.innerHTML = localStorage.getIte
 const displayCategory = document.querySelector(".quiz-container__gameboard__categories-h2");
 
 // Array med kategorierna
-const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
+//const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
+
+const categories = [
+  {
+    id: 9,
+    name: 'General Knowledge',
+    color: '#ef4444',
+    borderColor: '#dc2626',
+    icon: '💡',
+  },
+  {
+    id: 22,
+    name: 'Geography',
+    color: '#f97316',
+    borderColor: '#ea580c',
+    icon: '🌎',
+  },
+  {
+    id: 25,
+    name: 'Art',
+    color: '#eab308',
+    borderColor: '#ca8a04',
+    icon: '🎨',
+  },
+  {
+    id: 21,
+    name: 'Sports',
+    color: '#84cc16',
+    borderColor: '#65a30d',
+    icon: '⚽️',
+  },
+  {
+    id: 12,
+    name: 'Music',
+    color: '#06b6d4',
+    borderColor: '#0891b2',
+    icon: '🎵',
+  },
+  {
+    id: 23,
+    name: 'History',
+    color: '#3b82f6',
+    borderColor: '#2563eb',
+    icon: '📜',
+  },
+  {
+    id: 27,
+    name: 'Animals',
+    color: '#8b5cf6',
+    borderColor: '#7c3aed',
+    icon: '🐱',
+  },
+  {
+    id: 17,
+    name: 'Science',
+    color: '#ec4899',
+    borderColor: '#db2777',
+    icon: '🔬',
+  },
+]
 
 // Funktion för slumpmässigt val av 4 kategorier
 function getRandomOrder(arr) {
