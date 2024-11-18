@@ -13,6 +13,9 @@ const currentScore = document.querySelector(".quiz-container__gameboard__points_
 const highScore = document.querySelector(".highscore");
 
 let score = 0;
+let currentCat;
+let currentRound = 0;
+const catContainer = document.querySelector(".quiz-container__gameboard__categories");
 
 document.querySelector(".quiz-container__gameboard__timer").style.display = "none";
 
@@ -54,34 +57,42 @@ function createCats() {
         case "generalKnowledge":
           getQuestion(generalKnowledge);
           displayCategory.innerHTML = "General knowledge";
+          currentCat = generalKnowledge;
           break;
         case "geography":
           getQuestion(geography);
           displayCategory.innerHTML = "Geography";
+          currentCat = geography;
           break;
         case "art":
           getQuestion(art);
           displayCategory.innerHTML = "Art";
+          currentCat = art;
           break;
         case "sports":
           getQuestion(sports);
           displayCategory.innerHTML = "Sports";
+          currentCat = sports;
           break;
         case "music":
           getQuestion(music);
           displayCategory.innerHTML = "Music";
+          currentCat = music;
           break;
         case "history":
           getQuestion(history);
           displayCategory.innerHTML = "History";
+          currentCat = history;
           break;
         case "animals":
           getQuestion(animals);
           displayCategory.innerHTML = "Animals";
+          currentCat = animals;
           break;
         case "science":
           getQuestion(science);
           displayCategory.innerHTML = "Science";
+          currentCat = science;
           break;
       }
       document.querySelector(".card").classList.toggle("flipped");
@@ -105,8 +116,9 @@ async function getQuestion(cat) {
 }
 
 function genQuestion(data) {
+  currentRound++;
   questionBox.innerHTML = "";
-  startCountdown();
+  timerInProgress = true;
   const question = data.question;
   const questionTitle = document.createElement("h2");
   questionTitle.classList.add("question");
@@ -123,35 +135,40 @@ function genQuestion(data) {
     option.addEventListener("click", (e) => {
       checkAnswer(text, rightAnswer);
       showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
-      console.log(e.target);
-      console.log("options", options);
+      if (currentRound === 3) {
+        setTimeout(() => {
+          newRound();
+        }, 1000);
+      } else {
+        getQuestion(currentCat);
+      }
     });
   });
+}
+function newRound() {
+  currentCat = "";
+  currentRound = 0;
+  timerInProgress = false;
+  catContainer.innerHTML = "";
+  displayCategory.innerHTML = "Choose your next category";
+  changeCatImg(2);
+  document.querySelector(".card").classList.toggle("flipped");
+  createCats();
 }
 
 function checkAnswer(correct, guess) {
   if (guess === correct) {
     addTime();
     updateScore();
+    timerInProgress = false;
     console.log("CORRECT");
-    setTimeout(() => {
-      document.querySelector(".card").classList.toggle("flipped");
-      getQuestion();
-      console.log("guess", guess);
-      console.log("correct", correct);
-    }, 2000);
   } else {
+    timerInProgress = false;
     // saknad av modul i js script länk
     //
     /* decreaseHealth(); */
     //
     console.log("WRONG");
-    setTimeout(() => {
-      document.querySelector(".card").classList.toggle("flipped");
-      getQuestion();
-      console.log("guess", guess);
-      console.log("correct", correct);
-    }, 2000);
   }
 }
 
@@ -216,8 +233,7 @@ let timerInProgress = false;
 
 function startCountdown() {
   document.querySelector(".quiz-container__gameboard__timer").style.display = "block";
-  if (timerInProgress) return;
-  timerInProgress = true;
+  // if (timerInProgress) return;
   secondsLeft = quizDuration;
   document.querySelector("#timer").style.width = "100%";
   document.getElementById("timer").style.backgroundColor = "#0ea5e9";
@@ -231,7 +247,9 @@ function startCountdown() {
       } else {
         document.getElementById("timer").style.backgroundColor = "#0ea5e9";
       }
-      secondsLeft -= 1;
+      if (timerInProgress) {
+        secondsLeft -= 1;
+      }
       // document.getElementById("start-btn").textContent = secondsLeft;
       document.getElementById("timer").style.width = `${(secondsLeft / quizDuration) * 100}%`;
     } else {
@@ -248,3 +266,5 @@ function addTime() {
     secondsLeft = quizDuration;
   }
 }
+
+startCountdown();
