@@ -49,7 +49,7 @@ function createCats() {
     genDivs.classList.add(cat);
     genDivs.classList.add("bubble");
     genImg.classList.add("bubble__img");
-    genImg.addEventListener("click", function () {
+    genDivs.addEventListener("click", function () {
       switch (cat) {
         case "generalKnowledge":
           getQuestion(generalKnowledge);
@@ -95,14 +95,17 @@ async function getQuestion(cat) {
     if (!response.ok) {
       throw new Error("HTTP" + response.status);
     }
+
     const data = await response.json();
     genQuestion(data.results[0]);
+    console.log("data", data);
   } catch (error) {
     console.log(error);
   }
 }
 
 function genQuestion(data) {
+  questionBox.innerHTML = "";
   startCountdown();
   const question = data.question;
   const questionTitle = document.createElement("h2");
@@ -121,17 +124,32 @@ function genQuestion(data) {
       checkAnswer(text, rightAnswer);
       showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
       console.log(e.target);
+      console.log("options", options);
     });
   });
 }
 
-function checkAnswer(correct, guess) {
+function checkAnswer(correct, guess, cat, data) {
   if (guess === correct) {
     addTime();
     updateScore();
     console.log("CORRECT");
+    setTimeout(() => {
+      document.querySelector(".card").classList.toggle("flipped");
+      getQuestion(cat);
+      genQuestion(data);
+    }, 2000);
   } else {
+    // saknad av modul i js script länk
+    //
+    /* decreaseHealth(); */
+    //
     console.log("WRONG");
+    setTimeout(() => {
+      document.querySelector(".card").classList.toggle("flipped");
+      getQuestion(cat);
+      genQuestion(data);
+    }, 2000);
   }
 }
 
@@ -187,7 +205,7 @@ const categories = {
 */
 
 //globala variablar
-const quizDuration = 10;
+const quizDuration = 30;
 let secondsLeft;
 let countdownInterval;
 const timeAddedByRightAnswer = 3;
@@ -203,9 +221,11 @@ function startCountdown() {
 
   countdownInterval = setInterval(() => {
     if (secondsLeft > 0) {
-      if (secondsLeft === 6) {
+      if (secondsLeft < 6) {
         document.getElementById("timer").style.backgroundColor = "#ff0000";
-      } else if (secondsLeft > 6) {
+      } else if (secondsLeft < 16) {
+        document.getElementById("timer").style.backgroundColor = "yellow";
+      } else {
         document.getElementById("timer").style.backgroundColor = "#0ea5e9";
       }
       secondsLeft -= 1;
