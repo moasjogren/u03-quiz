@@ -317,6 +317,13 @@ function gameOver() {
   setTimeout(() => {
     gameOverLogo.style.opacity = "1";
     gameOverLogo.style.scale = "0.5";
+    const restartButton = document.createElement("button");
+    restartButton.classList.add("restartQuiz");
+    restartButton.innerHTML= "Play agin";
+    div.append(restartButton);
+    restartButton.addEventListener("click", () => {
+      window.location.reload();
+})
   }, 40);
 }
 
