@@ -26,11 +26,27 @@ Dokumentation av projekt
 I ReadME anger ni alla gruppdeltagarnas namn och sammanfattar hur quiz-applikation fungerar samt hur ni utvecklat applikation, utifrån styrkor och brister.
 
 Redovisning
-Gruppen redovisar sitt projekt torsdag v 48. Redovisningen får ta max 20 min. Utgå från följande struktur:
+Gruppen redovisar sitt projekt torsdag v 48. Redovisningen får ta max 20 min.  Utgå från följande struktur:
 
-Berätta kort om samt demonstrerera ert projekt
+Berätta kort om samt demonstrera ert projekt? Utifrån:
+Funktion av applikationen
+Struktur i kod
+Teknisk implementering av SEO
+Utvärdering av prestanda
+
+vi har gjort ett quiz med 8 olika kategorier som fetchar från en api som heter opentdb. när quizet startar så har man 30 sekunder att svara på frågorna som kommer upp och 3 liv för att få mer än en chans.
+
+HTML:
+CSS:
+Javascript:
+SEO:
+Prestanda:
+
 Vad är styrkorna med ert samarbete och det ni utvecklat ihop?
 Vad har varit utmanande och vad förbättras?
+
+
+
 Kriterier för bedömning
 Icke Godkänd (IG), Godkänd (G) eller Väl Godkänd (VG)
 
