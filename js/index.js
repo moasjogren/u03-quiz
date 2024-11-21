@@ -32,7 +32,7 @@ let score = 0;
 let currentCat;
 let currentRound = 0;
 let activeQuestion = false;
-const quizDuration = 3;
+const quizDuration = 30;
 let secondsLeft;
 let countdownInterval;
 const timeAnswer = 3;
