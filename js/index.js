@@ -146,6 +146,7 @@ async function getQuestion(cat) {
 }
 
 function genQuestion(data) {
+  changeCatImg(1);
   currentRound++;
   displayRound.innerHTML = `${currentRound}/3`;
   console.log("currentRound", currentRound)
@@ -200,14 +201,16 @@ function newRound() {
 
 function checkAnswer(correct, guess) {
   if (guess === correct) {
+    changeCatImg(3);
     addTime();
     updateScore();
     timerInProgress = false;
     console.log("CORRECT");
   } else {
 
-    decreaseTime();
+    changeCatImg(4);
     quizHealth.removeLife();
+
     timerInProgress = false;
     // saknad av modul i js script länk
     //
