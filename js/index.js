@@ -28,6 +28,7 @@ let activeQuestion = false;
 const catContainer = document.querySelector(
   ".quiz-container__gameboard__categories"
 );
+const displayRound = document.querySelector(".quiz-container__gameboard__points__round");
 
 document.querySelector(".quiz-container__gameboard__timer").style.display =
   "none";
@@ -143,8 +144,10 @@ async function getQuestion(cat) {
 }
 
 function genQuestion(data) {
-  activeQuestion = false;
   currentRound++;
+  displayRound.innerHTML = `${currentRound}/3`;
+  console.log("currentRound", currentRound)
+  activeQuestion = false;
   questionBox.innerHTML = "";
 
   const question = data.question;
@@ -184,6 +187,7 @@ function genQuestion(data) {
 function newRound() {
   currentCat = "";
   currentRound = 0;
+  displayRound.innerHTML = `${currentRound}/3`;
   timerInProgress = false;
   catContainer.innerHTML = "";
   displayCategory.innerHTML = "Choose your next category";
@@ -199,8 +203,7 @@ function checkAnswer(correct, guess) {
     timerInProgress = false;
     console.log("CORRECT");
   } else {
-    decreaseTime()
-    gaga.decreaseHealth()
+    decreaseTime()  
     timerInProgress = false;
     // saknad av modul i js script länk
     //
