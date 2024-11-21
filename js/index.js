@@ -172,6 +172,7 @@ function checkAnswer(correct, guess) {
     timerInProgress = false;
     console.log("CORRECT");
   } else {
+    decreaseTime()
     timerInProgress = false;
     // saknad av modul i js script länk
     //
@@ -237,7 +238,7 @@ const categories = {
 const quizDuration = 30;
 let secondsLeft;
 let countdownInterval;
-const timeAddedByRightAnswer = 3;
+const timeAnswer = 3;
 let timerInProgress = false;
 
 function startCountdown() {
@@ -270,7 +271,14 @@ function startCountdown() {
 }
 
 function addTime() {
-  secondsLeft += timeAddedByRightAnswer;
+  secondsLeft += timeAnswer;
+  if (secondsLeft > quizDuration) {
+    secondsLeft = quizDuration;
+  }
+}
+
+function decreaseTime() {
+  secondsLeft -= timeAnswer;
   if (secondsLeft > quizDuration) {
     secondsLeft = quizDuration;
   }
