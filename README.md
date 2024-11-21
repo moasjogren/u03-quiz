@@ -61,3 +61,6 @@ Ni visar att ni kan utan brister, eller bara i sådan omfattning att de knappt m
 Börja uppgift / Din inlämning
 En gruppmedlem skapar ett repo och bjuder in övriga gruppmedlemmar
 Dela repot med din lärare
+
+<img src="./figmaskiss.png" width="200" height="auto">
+<img src="./figmaskiss2.png" width="200" height="auto">

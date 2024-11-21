@@ -1,3 +1,4 @@
+//globala variablar
 const generalKnowledge =
   "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
 const geography =
@@ -20,15 +21,23 @@ const currentScore = document.querySelector(
   ".quiz-container__gameboard__points__score"
 );
 const highScore = document.querySelector(".highscore");
+const catContainer = document.querySelector(
+  ".quiz-container__gameboard__categories"
+);
+const displayRound = document.querySelector(
+  ".quiz-container__gameboard__points__round"
+);
 
 let score = 0;
 let currentCat;
 let currentRound = 0;
 let activeQuestion = false;
-const catContainer = document.querySelector(
-  ".quiz-container__gameboard__categories"
-);
-const displayRound = document.querySelector(".quiz-container__gameboard__points__round");
+const quizDuration = 30;
+let secondsLeft;
+let countdownInterval;
+const timeAnswer = 3;
+let timerInProgress = false;
+let lives = 3;
 
 document.querySelector(".quiz-container__gameboard__timer").style.display =
   "none";
@@ -151,6 +160,7 @@ function genQuestion(data) {
   currentRound++;
   displayRound.innerHTML = `Round: ${currentRound} of 3`;
   console.log("currentRound", currentRound)
+
   activeQuestion = false;
   questionBox.innerHTML = "";
 
@@ -209,16 +219,18 @@ function checkAnswer(correct, guess) {
     timerInProgress = false;
     console.log("CORRECT");
   } else {
+
     decreaseTime()
     changeCatImg(4);
     quizHealth.removeLife();
-
+    lives -= 1;
     timerInProgress = false;
-    // saknad av modul i js script länk
-    //
-    /* decreaseHealth(); */
-    //
     console.log("WRONG");
+    if (lives === 0) {
+      setTimeout(() => {
+        gameOver();
+      }, 800);
+    }
   }
 }
 
@@ -246,41 +258,10 @@ function updateScore() {
   }
 }
 
-// quiz-container__gameboard__categories
-// Nummer för  alla kategorier:
-// generalKnowledge = 9
-// geography = 22
-// art = 25
-// sports = 21
-// music = 12
-// history 23
-// animals = 27
-// science = 17
-
-/*
-const categories = {
-  generalknowledge: 9,
-  geography: 22,
-  art: 25,
-  sports: 21,
-  music: 12,
-  history: 23,
-  animals: 27,
-  science: 17,
-}
-*/
-
-//globala variablar
-const quizDuration = 30;
-let secondsLeft;
-let countdownInterval;
-const timeAnswer = 3;
-let timerInProgress = false;
-
 function startCountdown() {
   document.querySelector(".quiz-container__gameboard__timer").style.display =
     "block";
-  // if (timerInProgress) return;
+
   secondsLeft = quizDuration;
   document.querySelector("#timer").style.width = "100%";
   document.getElementById("timer").style.backgroundColor = "#0ea5e9";
@@ -302,7 +283,9 @@ function startCountdown() {
         (secondsLeft / quizDuration) * 100
       }%`;
     } else {
-      alert("Time's up! You can allways take the quiz again!");
+      setTimeout(() => {
+        gameOver();
+      }, 800);
       timerInProgress = false;
       clearInterval(countdownInterval);
     }
@@ -321,6 +304,20 @@ function decreaseTime() {
   if (secondsLeft > quizDuration) {
     secondsLeft = quizDuration;
   }
+}
+
+function gameOver() {
+  displayCategory.innerHTML = "";
+  const gameOverLogo = document.createElement("img");
+  gameOverLogo.src = "./img/gameOver.png";
+  const div = document.createElement("div");
+  div.classList.add("gameOverDiv");
+  div.append(gameOverLogo);
+  document.body.append(div);
+  setTimeout(() => {
+    gameOverLogo.style.opacity = "1";
+    gameOverLogo.style.scale = "0.5";
+  }, 40);
 }
 
 startCountdown();
