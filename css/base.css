@@ -16,14 +16,14 @@ html {
   --secondary-text: #2541b2;
   --quiz-bubble: #f18f01;
   --quiz-container: #f4f4f9;
-  --generalKnowledge-color: #007eff;
-  --geography-color: #ffa701;
-  --art-color: #9b00ff;
-  --sports-color: #27d82f;
-  --music-color: #ff1600;
-  --history-color: #fd02ff;
-  --animals-color: #ffe700;
-  --science-color: #3cb5c2;
+  --generalKnowledge-color: #3741cb;
+  --geography-color: #379fcb;
+  --art-color: #b868ea;
+  --sports-color: #f59e23;
+  --music-color: #cb3739;
+  --history-color: #e9e215;
+  --animals-color: #129600;
+  --science-color: #1deb35;
 }
 body {
   background-color: var(--background);
@@ -40,7 +40,7 @@ h1 {
   letter-spacing: 3px;
   rotate: -10deg;
   margin-bottom: 3rem;
-  text-shadow: 0 5px #ffffff, 0 10px var(--quiz-bubble);
+  text-shadow: 0 5px #ffffff, 0 10px var(--quiz-bubble), 0 0 10px;
 }
 .quiz-container {
   display: flex;
@@ -78,6 +78,7 @@ h1 {
   width: 600px;
   position: relative;
   margin-bottom: 30px;
+  background: white;
 }
 .card {
   position: relative;
@@ -120,6 +121,7 @@ h1 {
   text-align: center;
   width: 90%;
 }
+
 .answer {
   background-color: var(--quiz-bubble);
   width: 90%;
@@ -132,9 +134,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: black;
+  box-shadow: 4px 4px white, 8px 8px var(--quiz-bubble),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .flipped {
   transform: rotateY(180deg);
@@ -177,70 +178,62 @@ h1 {
 /* Färger */
 .generalKnowledge {
   background-color: var(--generalKnowledge-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #04386b;
+  box-shadow: 4px 4px white, 8px 8px var(--generalKnowledge-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .geography {
   background-color: var(--geography-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #926003;
+  box-shadow: 4px 4px white, 8px 8px var(--geography-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .art {
   background-color: var(--art-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #38035b;
+  box-shadow: 4px 4px white, 8px 8px var(--art-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .sports {
   background-color: var(--sports-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #17781c;
+  box-shadow: 4px 4px white, 8px 8px var(--sports-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .music {
   background-color: var(--music-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #770d03;
+  box-shadow: 4px 4px white, 8px 8px var(--music-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
+
 .history {
   background-color: var(--history-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #8b048b;
+  box-shadow: 4px 4px white, 8px 8px var(--history-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .animals {
   background-color: var(--animals-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #c2b00d;
+  box-shadow: 4px 4px white, 8px 8px var(--animals-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .science {
   background-color: var(--science-color);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: #116d77;
+  box-shadow: 4px 4px white, 8px 8px var(--science-color),
+    rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
 .bubble {
   border-radius: 15px;
   margin: 5px;
-  height: 120px;
+  height: 100px;
+  width: 90%;
   display: flex;
   justify-content: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
   cursor: pointer;
 }
 .bubble:active {
   scale: 0.95;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
+
 .bubble__img {
   object-fit: contain;
-  width: 15%;
+  width: 20%;
 }
 .display-none {
   display: none;
@@ -260,9 +253,11 @@ h1 {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    justify-items: center;
   }
   .bubble {
-    height: 250px;
+    height: 200px;
   }
   .bubble__img {
     width: 50%;
@@ -279,8 +274,8 @@ h1 {
     font-size: 2rem;
   }
   .answer {
-    width: 280px;
-    height: 240px;
+    width: 240px;
+    height: 200px;
   }
 }
 .gameOverDiv {
