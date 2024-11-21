@@ -15,6 +15,7 @@ html {
   --primary-text: #000000;
   --secondary-text: #2541b2;
   --quiz-bubble: #f18f01;
+  --quiz-bubble-hover: #ff9900;
   --quiz-container: #f4f4f9;
   --generalKnowledge-color: #3741cb;
   --geography-color: #379fcb;
@@ -137,6 +138,12 @@ h1 {
   box-shadow: 4px 4px white, 8px 8px var(--quiz-bubble),
     rgba(0, 0, 0, 0.6) 15px 15px 20px;
 }
+.answer:active {
+  scale: 0.95;
+}
+.answer:hover {
+  background-color: var(--quiz-bubble-hover);
+}
 .flipped {
   transform: rotateY(180deg);
 }
@@ -230,7 +237,6 @@ h1 {
 .bubble:active {
   scale: 0.95;
 }
-
 .bubble__img {
   object-fit: contain;
   width: 20%;
@@ -316,6 +322,7 @@ h1 {
   :root {
     --primary-text: #ffffff;
     --quiz-bubble: #521616;
+    --quiz-bubble-hover: #671b1b;
     --generalKnowledge-color: #003b76;
     --geography-color: #764c00;
     --art-color: #41006c;
@@ -331,6 +338,6 @@ h1 {
   }
   h1 {
     color: var(--quiz-bubble);
-    text-shadow: 0 5px #ffffff, 0 10px var(--quiz-bubble);
+    text-shadow: 0 5px #ffffff, 0 10px var(--quiz-bubble), 0 0 10px white;
   }
 }

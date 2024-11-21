@@ -239,8 +239,10 @@ function showCorrectAnswer(array, correct) {
   array.forEach((text) => {
     if (text.innerHTML === doc.documentElement.textContent) {
       text.style.backgroundColor = "#2A9134";
+      text.style.boxShadow = "4px 4px white, 8px 8px #2A9134, rgba(0, 0, 0, 0.6) 15px 15px 20px";
     } else {
       text.style.backgroundColor = "#FF4A1C";
+      text.style.boxShadow = "4px 4px white, 8px 8px #FF4A1C, rgba(0, 0, 0, 0.6) 15px 15px 20px";
     }
   });
 }
