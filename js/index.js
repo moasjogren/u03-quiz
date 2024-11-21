@@ -216,6 +216,8 @@ function checkAnswer(correct, guess) {
     timerInProgress = false;
     console.log("CORRECT");
   } else {
+
+    decreaseTime()
     changeCatImg(4);
     quizHealth.removeLife();
     lives -= 1;
