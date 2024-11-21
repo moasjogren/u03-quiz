@@ -297,6 +297,21 @@ h1 {
   scale: 2;
   transition: all 0.2s linear;
 }
+
+.restartQuiz{
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  background-color: white;
+  cursor: pointer;
+  padding: 2rem 3rem;
+  border-radius: 0 50% 50% 50%;
+}
+
 /* DESKTOP */
 
 @media (prefers-color-scheme: dark) {

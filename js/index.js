@@ -32,7 +32,7 @@ let score = 0;
 let currentCat;
 let currentRound = 0;
 let activeQuestion = false;
-const quizDuration = 30;
+const quizDuration = 3;
 let secondsLeft;
 let countdownInterval;
 const timeAnswer = 3;
@@ -312,6 +312,13 @@ function gameOver() {
   setTimeout(() => {
     gameOverLogo.style.opacity = "1";
     gameOverLogo.style.scale = "0.5";
+    const restartButton = document.createElement("button");
+    restartButton.classList.add("restartQuiz");
+    restartButton.innerHTML= "Play agin";
+    div.append(restartButton);
+    restartButton.addEventListener("click", () => {
+      window.location.reload();
+})
   }, 40);
 }
 
