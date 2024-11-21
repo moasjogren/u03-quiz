@@ -132,8 +132,10 @@ function genQuestion(data) {
   randomOrder.forEach((text) => {
     const option = document.createElement("div");
     option.classList.add("answer");
-    option.innerHTML = text;
-    questionBox.append(option);
+    setTimeout(() => {
+      option.innerHTML = text;
+      questionBox.append(option);
+    }, 3000);
     option.addEventListener("click", (e) => {
       if (activeQuestion) return;
       activeQuestion = true;
@@ -143,11 +145,11 @@ function genQuestion(data) {
       if (currentRound === 3) {
         setTimeout(() => {
           newRound();
-        }, 5000);
+        }, 2000);
       } else {
         setTimeout(() => {
           getQuestion(currentCat);
-        }, 5000);
+        }, 2000);
       }
     });
   });
