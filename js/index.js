@@ -146,7 +146,7 @@ function genQuestion(data) {
   activeQuestion = false;
   currentRound++;
   questionBox.innerHTML = "";
-  timerInProgress = true;
+
   const question = data.question;
   const questionTitle = document.createElement("h2");
   questionTitle.classList.add("question");
@@ -161,6 +161,7 @@ function genQuestion(data) {
     setTimeout(() => {
       option.innerHTML = text;
       questionBox.append(option);
+      timerInProgress = true;
     }, 3000);
     option.addEventListener("click", (e) => {
       if (activeQuestion) return;
@@ -199,6 +200,7 @@ function checkAnswer(correct, guess) {
     console.log("CORRECT");
   } else {
     decreaseTime()
+    gaga.decreaseHealth()
     timerInProgress = false;
     // saknad av modul i js script länk
     //
