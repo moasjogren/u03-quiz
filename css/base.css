@@ -157,8 +157,9 @@ h1 {
 }
 .quiz-container__gameboard__points__round {
   color: var(--primary-text);
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
+  margin-top: -50px
 }
 .quiz-container__gameboard__timer {
   height: 1rem;
@@ -240,6 +241,9 @@ h1 {
 .bubble__img {
   object-fit: contain;
   width: 15%;
+}
+.display-none {
+  display: none;
 }
 /* TABLET */
 @media (min-width: 750px) {
