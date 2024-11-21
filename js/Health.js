@@ -1,41 +1,39 @@
+const heartImg = "./img/heart.png";
+const brokenHeartImg = "./img/broken-heart.png";
+
 class Health {
-  constructor(parentElement, callback) {
+  constructor(parentElement) {
     this.parentElement = parentElement;
 
-    this.callback = callback;
-    this.health = 3;
-    this.renderLives();
+    this.lives = 3;
+    this.render();
   }
 
-  decreaseHealth() {
-    if (this.health === 0) return;
+  removeLife() {
+    if (this.lives === 0) return;
 
-    this.health -= 1;
-    this.renderLives();
-
-    if (this.health === 0) {
-      this.callback();
-    }
+    this.lives -= 1;
+    this.render();
   }
 
   reset() {
-    this.health = 3;
-    this.renderLives();
+    this.lives = 3;
+    this.render();
   }
 
-  renderLives() {
+  render() {
     this.parentElement.innerHTML = "";
 
-    for (let i = 0; i < this.health; i++) {
+    for (let i = 0; i < this.lives; i++) {
       let heart = document.createElement("img");
-      heart.src = "./img/image5.png";
-      heart.alt = "Heart";
+      heart.src = heartImg;
+      heart.alt = "Full heart";
       this.parentElement.appendChild(heart);
     }
 
-    for (let i = 0; i < 3 - this.health; i++) {
+    for (let i = 0; i < 3 - this.lives; i++) {
       let heart = document.createElement("img");
-      heart.src = "./img/image6.png";
+      heart.src = brokenHeartImg;
       heart.alt = "Broken heart";
       this.parentElement.appendChild(heart);
     }

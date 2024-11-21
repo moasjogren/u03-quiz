@@ -1,31 +1,55 @@
-const generalKnowledge = "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
-const geography = "https://opentdb.com/api.php?amount=1&category=22&type=multiple";
+const generalKnowledge =
+  "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
+const geography =
+  "https://opentdb.com/api.php?amount=1&category=22&type=multiple";
 const art = "https://opentdb.com/api.php?amount=1&category=25&type=multiple";
 const sports = "https://opentdb.com/api.php?amount=1&category=21&type=multiple";
 const music = "https://opentdb.com/api.php?amount=1&category=12&type=multiple";
-const history = "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
-const animals = "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
-const science = "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
+const history =
+  "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
+const animals =
+  "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
+const science =
+  "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
 const lifeElement = document.querySelector(".quiz-container__life");
 
-const questionBox = document.querySelector(".quiz-container__gameboard__questions");
-const currentScore = document.querySelector(".quiz-container__gameboard__points__score");
+const questionBox = document.querySelector(
+  ".quiz-container__gameboard__questions"
+);
+const currentScore = document.querySelector(
+  ".quiz-container__gameboard__points__score"
+);
 const highScore = document.querySelector(".highscore");
 
 let score = 0;
 let currentCat;
 let currentRound = 0;
 let activeQuestion = false;
-const catContainer = document.querySelector(".quiz-container__gameboard__categories");
+const catContainer = document.querySelector(
+  ".quiz-container__gameboard__categories"
+);
 
-document.querySelector(".quiz-container__gameboard__timer").style.display = "none";
+document.querySelector(".quiz-container__gameboard__timer").style.display =
+  "none";
 
-if (localStorage.getItem("highscore")) highScore.innerHTML = localStorage.getItem("highscore");
+if (localStorage.getItem("highscore"))
+  highScore.innerHTML = localStorage.getItem("highscore");
 
-const displayCategory = document.querySelector(".quiz-container__gameboard__categories-h2");
+const displayCategory = document.querySelector(
+  ".quiz-container__gameboard__categories-h2"
+);
 
 // Array med kategorierna
-const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
+const categories = [
+  "generalKnowledge",
+  "geography",
+  "art",
+  "sports",
+  "music",
+  "history",
+  "animals",
+  "science",
+];
 
 // Funktion för slumpmässigt val av 4 kategorier
 function getRandomOrder(arr) {
@@ -48,7 +72,9 @@ function createCats() {
     let genDivs = document.createElement("div");
     let genImg = document.createElement("img");
     genImg.src = `./img/${cat}.png`;
-    document.querySelector(".quiz-container__gameboard__categories").append(genDivs);
+    document
+      .querySelector(".quiz-container__gameboard__categories")
+      .append(genDivs);
     genDivs.append(genImg);
     genDivs.classList.add(cat);
     genDivs.classList.add("bubble");
@@ -193,9 +219,7 @@ function showCorrectAnswer(array, correct) {
 createCats();
 
 // Game over-state nedan
-const gaga = new Health(lifeElement, () => {
-  console.log("game over");
-});
+const quizHealth = new Health(lifeElement);
 
 function updateScore() {
   score++;
@@ -205,7 +229,6 @@ function updateScore() {
     localStorage.setItem("highscore", score);
   }
 }
-window.gaga = gaga;
 
 // quiz-container__gameboard__categories
 // Nummer för  alla kategorier:
@@ -239,7 +262,8 @@ const timeAddedByRightAnswer = 3;
 let timerInProgress = false;
 
 function startCountdown() {
-  document.querySelector(".quiz-container__gameboard__timer").style.display = "block";
+  document.querySelector(".quiz-container__gameboard__timer").style.display =
+    "block";
   // if (timerInProgress) return;
   secondsLeft = quizDuration;
   document.querySelector("#timer").style.width = "100%";
@@ -258,7 +282,9 @@ function startCountdown() {
         secondsLeft -= 1;
       }
       // document.getElementById("start-btn").textContent = secondsLeft;
-      document.getElementById("timer").style.width = `${(secondsLeft / quizDuration) * 100}%`;
+      document.getElementById("timer").style.width = `${
+        (secondsLeft / quizDuration) * 100
+      }%`;
     } else {
       alert("Time's up! You can allways take the quiz again!");
       timerInProgress = false;
