@@ -147,8 +147,9 @@ async function getQuestion(cat) {
 
 function genQuestion(data) {
   changeCatImg(1);
+  displayRound.classList.remove("display-none")
   currentRound++;
-  displayRound.innerHTML = `${currentRound}/3`;
+  displayRound.innerHTML = `Round: ${currentRound} of 3`;
   console.log("currentRound", currentRound)
   activeQuestion = false;
   questionBox.innerHTML = "";
@@ -178,6 +179,7 @@ function genQuestion(data) {
       if (currentRound === 3) {
         setTimeout(() => {
           newRound();
+          displayRound.classList.add("display-none")
         }, 2000);
       } else {
         setTimeout(() => {
@@ -190,7 +192,7 @@ function genQuestion(data) {
 function newRound() {
   currentCat = "";
   currentRound = 0;
-  displayRound.innerHTML = `${currentRound}/3`;
+  displayRound.innerHTML = `Round: ${currentRound} of 3`;
   timerInProgress = false;
   catContainer.innerHTML = "";
   displayCategory.innerHTML = "Choose your next category";
