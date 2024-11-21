@@ -40,6 +40,8 @@ const displayCategory = document.querySelector(
   ".quiz-container__gameboard__categories-h2"
 );
 
+const quizHealth = new Health(lifeElement);
+
 // Array med kategorierna
 const categories = [
   "generalKnowledge",
@@ -203,7 +205,9 @@ function checkAnswer(correct, guess) {
     timerInProgress = false;
     console.log("CORRECT");
   } else {
-    decreaseTime()  
+
+    decreaseTime();
+    quizHealth.removeLife();
     timerInProgress = false;
     // saknad av modul i js script länk
     //
@@ -227,7 +231,6 @@ function showCorrectAnswer(array, correct) {
 createCats();
 
 // Game over-state nedan
-const quizHealth = new Health(lifeElement);
 
 function updateScore() {
   score++;
