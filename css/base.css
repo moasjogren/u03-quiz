@@ -151,7 +151,7 @@ h1 {
   padding: 0 0.5rem;
 }
 .quiz-container__gameboard__points__score,
-.quiz-container__gameboard__points__high-score{
+.quiz-container__gameboard__points__high-score {
   color: var(--primary-text);
   font-size: 3rem;
 }
@@ -229,12 +229,14 @@ h1 {
   height: 120px;
   display: flex;
   justify-content: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   cursor: pointer;
 }
 .bubble:active {
   scale: 0.95;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 .bubble__img {
   object-fit: contain;
@@ -277,6 +279,23 @@ h1 {
     width: 280px;
     height: 240px;
   }
+}
+.gameOverDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%) rotate(-30deg);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gameOverDiv img {
+  width: 80%;
+  height: 800px;
+  opacity: 0.2;
+  scale: 2;
+  transition: all 0.2s linear;
 }
 /* DESKTOP */
 
