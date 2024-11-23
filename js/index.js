@@ -38,6 +38,9 @@ let countdownInterval;
 const timeAnswer = 3;
 let timerInProgress = false;
 let lives = 3;
+let globalRightAnswer;
+//Variabel för att kolla om spelet är igång så man inte kan spela efter GameOver!
+let isGameOver = false;
 
 document.querySelector(".quiz-container__gameboard__timer").style.display =
   "none";
@@ -156,14 +159,12 @@ async function getQuestion(cat) {
 
 function genQuestion(data) {
   changeCatImg(1);
-  displayRound.classList.remove("display-none")
+  displayRound.classList.remove("display-none");
   currentRound++;
   displayRound.innerHTML = `Round: ${currentRound} of 3`;
-  console.log("currentRound", currentRound)
-
+  console.log("currentRound", currentRound);
   activeQuestion = false;
   questionBox.innerHTML = "";
-
   const question = data.question;
   const questionTitle = document.createElement("h2");
   questionTitle.classList.add("question");
@@ -180,20 +181,20 @@ function genQuestion(data) {
       questionBox.append(option);
       timerInProgress = true;
     }, 3000);
-    option.addEventListener("click", (e) => {
+    option.addEventListener("click", () => {
       if (activeQuestion) return;
       activeQuestion = true;
-
       checkAnswer(text, rightAnswer);
+      globalRightAnswer = rightAnswer;
       showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
-      if (currentRound === 3) {
+      if (currentRound === 3 && !isGameOver) {
         setTimeout(() => {
           newRound();
-          displayRound.classList.add("display-none")
+          displayRound.classList.add("display-none");
         }, 2000);
       } else {
         setTimeout(() => {
-          getQuestion(currentCat);
+          if (!isGameOver) getQuestion(currentCat);
         }, 2000);
       }
     });
@@ -208,7 +209,7 @@ function newRound() {
   displayCategory.innerHTML = "Choose your next category";
   changeCatImg(2);
   document.querySelector(".card").classList.toggle("flipped");
-  createCats();
+  if (!isGameOver) createCats();
 }
 
 function checkAnswer(correct, guess) {
@@ -219,14 +220,14 @@ function checkAnswer(correct, guess) {
     timerInProgress = false;
     console.log("CORRECT");
   } else {
-
-    decreaseTime()
+    decreaseTime();
     changeCatImg(4);
     quizHealth.removeLife();
     lives -= 1;
     timerInProgress = false;
     console.log("WRONG");
     if (lives === 0) {
+      isGameOver = true;
       setTimeout(() => {
         gameOver();
       }, 800);
@@ -239,10 +240,12 @@ function showCorrectAnswer(array, correct) {
   array.forEach((text) => {
     if (text.innerHTML === doc.documentElement.textContent) {
       text.style.backgroundColor = "#2A9134";
-      text.style.boxShadow = "4px 4px white, 8px 8px #2A9134, rgba(0, 0, 0, 0.6) 15px 15px 20px";
+      text.style.boxShadow =
+        "4px 4px white, 8px 8px #2A9134, rgba(0, 0, 0, 0.6) 15px 15px 20px";
     } else {
       text.style.backgroundColor = "#FF4A1C";
-      text.style.boxShadow = "4px 4px white, 8px 8px #FF4A1C, rgba(0, 0, 0, 0.6) 15px 15px 20px";
+      text.style.boxShadow =
+        "4px 4px white, 8px 8px #FF4A1C, rgba(0, 0, 0, 0.6) 15px 15px 20px";
     }
   });
 }
@@ -253,7 +256,6 @@ createCats();
 
 function updateScore() {
   score++;
-
   currentScore.innerHTML = `Score: ${score}`;
   if (score > localStorage.getItem("highscore")) {
     localStorage.setItem("highscore", score);
@@ -263,7 +265,6 @@ function updateScore() {
 function startCountdown() {
   document.querySelector(".quiz-container__gameboard__timer").style.display =
     "block";
-
   secondsLeft = quizDuration;
   document.querySelector("#timer").style.width = "100%";
   document.getElementById("timer").style.backgroundColor = "#0ea5e9";
@@ -277,7 +278,7 @@ function startCountdown() {
       } else {
         document.getElementById("timer").style.backgroundColor = "#0ea5e9";
       }
-      if (timerInProgress) {
+      if (timerInProgress && !isGameOver) {
         secondsLeft -= 1;
       }
       // document.getElementById("start-btn").textContent = secondsLeft;
@@ -285,9 +286,11 @@ function startCountdown() {
         (secondsLeft / quizDuration) * 100
       }%`;
     } else {
+      isGameOver = true;
       setTimeout(() => {
         gameOver();
       }, 800);
+
       timerInProgress = false;
       clearInterval(countdownInterval);
     }
@@ -309,7 +312,6 @@ function decreaseTime() {
 }
 
 function gameOver() {
-  displayCategory.innerHTML = "";
   const gameOverLogo = document.createElement("img");
   gameOverLogo.src = "./img/gameOver.png";
   const div = document.createElement("div");
@@ -321,11 +323,11 @@ function gameOver() {
     gameOverLogo.style.scale = "0.5";
     const restartButton = document.createElement("button");
     restartButton.classList.add("restartQuiz");
-    restartButton.innerHTML= "Play agin";
+    restartButton.innerHTML = "Play agin";
     div.append(restartButton);
     restartButton.addEventListener("click", () => {
       window.location.reload();
-})
+    });
   }, 40);
 }
 
