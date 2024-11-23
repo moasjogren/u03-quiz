@@ -201,9 +201,9 @@ function genQuestion(data) {
   });
 }
 function newRound() {
+  questionBox.innerHTML = "";
   currentCat = "";
   currentRound = 0;
-  displayRound.innerHTML = `Round: ${currentRound} of 3`;
   timerInProgress = false;
   catContainer.innerHTML = "";
   displayCategory.innerHTML = "Choose your next category";
