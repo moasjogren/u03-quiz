@@ -267,7 +267,7 @@ function startCountdown() {
     "block";
   secondsLeft = quizDuration;
   document.querySelector("#timer").style.width = "100%";
-  document.getElementById("timer").style.backgroundColor = "#0ea5e9";
+  document.getElementById("timer").style.backgroundColor = "#90EE90";
 
   countdownInterval = setInterval(() => {
     if (secondsLeft > 0) {
@@ -276,7 +276,7 @@ function startCountdown() {
       } else if (secondsLeft < 16) {
         document.getElementById("timer").style.backgroundColor = "yellow";
       } else {
-        document.getElementById("timer").style.backgroundColor = "#0ea5e9";
+        document.getElementById("timer").style.backgroundColor = "#90EE90";
       }
       if (timerInProgress && !isGameOver) {
         secondsLeft -= 1;
@@ -321,14 +321,16 @@ function gameOver() {
   setTimeout(() => {
     gameOverLogo.style.opacity = "1";
     gameOverLogo.style.scale = "0.5";
+  }, 40);
+  setTimeout(() => {
     const restartButton = document.createElement("button");
     restartButton.classList.add("restartQuiz");
     restartButton.innerHTML = "Play agin";
-    div.append(restartButton);
+    document.querySelector(".quiz-container__gameboard__cat").append(restartButton);
     restartButton.addEventListener("click", () => {
       window.location.reload();
-    });
-  }, 40);
+    }); 
+  }, 1000);
 }
 
 startCountdown();
