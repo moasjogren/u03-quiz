@@ -79,7 +79,7 @@ h1 {
   width: 600px;
   position: relative;
   margin-bottom: 30px;
-  background: white;
+  background: #fff;
 }
 .card {
   position: relative;
@@ -137,6 +137,8 @@ h1 {
   justify-content: center;
   box-shadow: 4px 4px white, 8px 8px var(--quiz-bubble),
     rgba(0, 0, 0, 0.6) 15px 15px 20px;
+  transition: all 0.25s linear;
+  opacity: 0;
 }
 .answer:active {
   scale: 0.95;
@@ -166,8 +168,14 @@ h1 {
 .quiz-container__gameboard__points__round {
   color: var(--primary-text);
   font-size: 2rem;
+  margin-top: -50px;
+  width: 100%;
+  overflow: hidden;
   text-align: center;
-  margin-top: -50px
+}
+.quiz-container__gameboard__points__round-text {
+  margin-right: -800px;
+  transition: all 0.5s ease-in-out;
 }
 .quiz-container__gameboard__timer {
   height: 1rem;
@@ -241,9 +249,7 @@ h1 {
   object-fit: contain;
   width: 20%;
 }
-.display-none {
-  display: none;
-}
+
 /* TABLET */
 @media (min-width: 750px) {
   .quiz-container__life {
@@ -302,7 +308,7 @@ h1 {
   transition: all 0.2s linear;
 }
 
-.restartQuiz{
+.restartQuiz {
   position: absolute;
   top: -5%;
   left: 50%;
