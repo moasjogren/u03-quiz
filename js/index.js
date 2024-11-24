@@ -25,7 +25,7 @@ const catContainer = document.querySelector(
   ".quiz-container__gameboard__categories"
 );
 const displayRound = document.querySelector(
-  ".quiz-container__gameboard__points__round"
+  ".quiz-container__gameboard__points__round-text"
 );
 
 let score = 0;
@@ -51,6 +51,8 @@ if (localStorage.getItem("highscore"))
 const displayCategory = document.querySelector(
   ".quiz-container__gameboard__categories-h2"
 );
+
+displayRound.innerHTML = `Round: ${currentRound} of 3`;
 
 const quizHealth = new Health(lifeElement);
 
@@ -151,18 +153,17 @@ async function getQuestion(cat) {
 
     const data = await response.json();
     genQuestion(data.results[0]);
-    console.log("data", data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
 function genQuestion(data) {
+  displayRound.style.marginRight = "0px";
   changeCatImg(1);
-  displayRound.classList.remove("display-none");
   currentRound++;
   displayRound.innerHTML = `Round: ${currentRound} of 3`;
-  console.log("currentRound", currentRound);
+
   activeQuestion = false;
   questionBox.innerHTML = "";
   const question = data.question;
@@ -173,35 +174,38 @@ function genQuestion(data) {
   const rightAnswer = data.correct_answer;
   const options = [...data.incorrect_answers, rightAnswer];
   const randomOrder = getRandomOrder(options);
-  randomOrder.forEach((text) => {
+  randomOrder.forEach((text, index) => {
     const option = document.createElement("div");
     option.classList.add("answer");
+    option.innerHTML = text;
+    questionBox.append(option);
     setTimeout(() => {
-      option.innerHTML = text;
-      questionBox.append(option);
+      setTimeout(() => {
+        option.style.opacity = "1";
+      }, index * 200);
       timerInProgress = true;
-    }, 3000);
-    option.addEventListener("click", () => {
-      if (activeQuestion) return;
-      activeQuestion = true;
-      checkAnswer(text, rightAnswer);
-      globalRightAnswer = rightAnswer;
-      showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
-      if (currentRound === 3 && !isGameOver) {
-        setTimeout(() => {
-          newRound();
-          displayRound.classList.add("display-none");
-        }, 2000);
-      } else {
-        setTimeout(() => {
-          if (!isGameOver) getQuestion(currentCat);
-        }, 2000);
-      }
-    });
+      option.addEventListener("click", () => {
+        if (activeQuestion) return;
+        activeQuestion = true;
+        checkAnswer(text, rightAnswer);
+        globalRightAnswer = rightAnswer;
+        showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
+        if (currentRound === 3 && !isGameOver) {
+          setTimeout(() => {
+            newRound();
+          }, 2000);
+        } else {
+          setTimeout(() => {
+            if (!isGameOver) getQuestion(currentCat);
+          }, 2000);
+        }
+      });
+    }, 2000);
   });
 }
 function newRound() {
   questionBox.innerHTML = "";
+  displayRound.style.marginRight = "-800px";
   currentCat = "";
   currentRound = 0;
   timerInProgress = false;
@@ -218,14 +222,13 @@ function checkAnswer(correct, guess) {
     addTime();
     updateScore();
     timerInProgress = false;
-    console.log("CORRECT");
   } else {
     decreaseTime();
     changeCatImg(4);
     quizHealth.removeLife();
     lives -= 1;
     timerInProgress = false;
-    console.log("WRONG");
+
     if (lives === 0) {
       isGameOver = true;
       setTimeout(() => {
@@ -325,8 +328,12 @@ function gameOver() {
   setTimeout(() => {
     const restartButton = document.createElement("button");
     restartButton.classList.add("restartQuiz");
-    restartButton.innerHTML = "Play agin";
+
+  
     document.querySelector(".quiz-container__gameboard__cat").append(restartButton);
+
+    restartButton.innerHTML= "Play again?";
+
     restartButton.addEventListener("click", () => {
       window.location.reload();
     }); 
