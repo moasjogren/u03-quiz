@@ -1,32 +1,19 @@
 //globala variablar
-const generalKnowledge =
-  "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
-const geography =
-  "https://opentdb.com/api.php?amount=1&category=22&type=multiple";
+const generalKnowledge = "https://opentdb.com/api.php?amount=1&category=9&type=multiple";
+const geography = "https://opentdb.com/api.php?amount=1&category=22&type=multiple";
 const art = "https://opentdb.com/api.php?amount=1&category=25&type=multiple";
 const sports = "https://opentdb.com/api.php?amount=1&category=21&type=multiple";
 const music = "https://opentdb.com/api.php?amount=1&category=12&type=multiple";
-const history =
-  "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
-const animals =
-  "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
-const science =
-  "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
+const history = "https://opentdb.com/api.php?amount=1&category=23&type=multiple";
+const animals = "https://opentdb.com/api.php?amount=1&category=27&type=multiple";
+const science = "https://opentdb.com/api.php?amount=1&category=17&type=multiple";
 const lifeElement = document.querySelector(".quiz-container__life");
 
-const questionBox = document.querySelector(
-  ".quiz-container__gameboard__questions"
-);
-const currentScore = document.querySelector(
-  ".quiz-container__gameboard__points__score"
-);
+const questionBox = document.querySelector(".quiz-container__gameboard__questions");
+const currentScore = document.querySelector(".quiz-container__gameboard__points__score");
 const highScore = document.querySelector(".highscore");
-const catContainer = document.querySelector(
-  ".quiz-container__gameboard__categories"
-);
-const displayRound = document.querySelector(
-  ".quiz-container__gameboard__points__round-text"
-);
+const catContainer = document.querySelector(".quiz-container__gameboard__categories");
+const displayRound = document.querySelector(".quiz-container__gameboard__points__round-text");
 
 let score = 0;
 let currentCat;
@@ -42,31 +29,18 @@ let globalRightAnswer;
 //Variabel för att kolla om spelet är igång så man inte kan spela efter GameOver!
 let isGameOver = false;
 
-document.querySelector(".quiz-container__gameboard__timer").style.display =
-  "none";
+document.querySelector(".quiz-container__gameboard__timer").style.display = "none";
 
-if (localStorage.getItem("highscore"))
-  highScore.innerHTML = localStorage.getItem("highscore");
+if (localStorage.getItem("highscore")) highScore.innerHTML = localStorage.getItem("highscore");
 
-const displayCategory = document.querySelector(
-  ".quiz-container__gameboard__categories-h2"
-);
+const displayCategory = document.querySelector(".quiz-container__gameboard__categories-h2");
 
 displayRound.innerHTML = `Round: ${currentRound} of 3`;
 
 const quizHealth = new Health(lifeElement);
 
 // Array med kategorierna
-const categories = [
-  "generalKnowledge",
-  "geography",
-  "art",
-  "sports",
-  "music",
-  "history",
-  "animals",
-  "science",
-];
+const categories = ["generalKnowledge", "geography", "art", "sports", "music", "history", "animals", "science"];
 
 // Funktion för slumpmässigt val av 4 kategorier
 function getRandomOrder(arr) {
@@ -89,9 +63,8 @@ function createCats() {
     let genDivs = document.createElement("div");
     let genImg = document.createElement("img");
     genImg.src = `./img/${cat}.png`;
-    document
-      .querySelector(".quiz-container__gameboard__categories")
-      .append(genDivs);
+    genImg.alt = `${cat} icon`;
+    document.querySelector(".quiz-container__gameboard__categories").append(genDivs);
     genDivs.append(genImg);
     genDivs.classList.add(cat);
     genDivs.classList.add("bubble");
@@ -243,12 +216,10 @@ function showCorrectAnswer(array, correct) {
   array.forEach((text) => {
     if (text.innerHTML === doc.documentElement.textContent) {
       text.style.backgroundColor = "#2A9134";
-      text.style.boxShadow =
-        "4px 4px white, 8px 8px #2A9134, rgba(0, 0, 0, 0.6) 15px 15px 20px";
+      text.style.boxShadow = "4px 4px white, 8px 8px #2A9134, rgba(0, 0, 0, 0.6) 15px 15px 20px";
     } else {
       text.style.backgroundColor = "#FF4A1C";
-      text.style.boxShadow =
-        "4px 4px white, 8px 8px #FF4A1C, rgba(0, 0, 0, 0.6) 15px 15px 20px";
+      text.style.boxShadow = "4px 4px white, 8px 8px #FF4A1C, rgba(0, 0, 0, 0.6) 15px 15px 20px";
     }
   });
 }
@@ -266,8 +237,7 @@ function updateScore() {
 }
 
 function startCountdown() {
-  document.querySelector(".quiz-container__gameboard__timer").style.display =
-    "block";
+  document.querySelector(".quiz-container__gameboard__timer").style.display = "block";
   secondsLeft = quizDuration;
   document.querySelector("#timer").style.width = "100%";
   document.getElementById("timer").style.backgroundColor = "#90EE90";
@@ -285,9 +255,7 @@ function startCountdown() {
         secondsLeft -= 1;
       }
       // document.getElementById("start-btn").textContent = secondsLeft;
-      document.getElementById("timer").style.width = `${
-        (secondsLeft / quizDuration) * 100
-      }%`;
+      document.getElementById("timer").style.width = `${(secondsLeft / quizDuration) * 100}%`;
     } else {
       isGameOver = true;
       setTimeout(() => {
@@ -317,6 +285,7 @@ function decreaseTime() {
 function gameOver() {
   const gameOverLogo = document.createElement("img");
   gameOverLogo.src = "./img/gameOver.png";
+  gameOverLogo.alt = "Game over image";
   const div = document.createElement("div");
   div.classList.add("gameOverDiv");
   div.append(gameOverLogo);
@@ -329,6 +298,7 @@ function gameOver() {
     const restartButton = document.createElement("button");
     restartButton.classList.add("restartQuiz");
 
+
     document
       .querySelector(".quiz-container__gameboard__cat")
       .append(restartButton);
@@ -336,6 +306,7 @@ function gameOver() {
     restartButton.innerHTML = "Play again?";
 
     showCorrectAnswer(document.querySelectorAll(".answer"), globalRightAnswer);
+
 
     restartButton.addEventListener("click", () => {
       window.location.reload();
