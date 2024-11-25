@@ -113,7 +113,6 @@ function createCats() {
           break;
       }
       document.querySelector(".card").classList.toggle("flipped");
-      changeCatImg(1);
     });
   });
 }
@@ -147,6 +146,7 @@ function genQuestion(data) {
   const rightAnswer = data.correct_answer;
   const options = [...data.incorrect_answers, rightAnswer];
   const randomOrder = getRandomOrder(options);
+  globalRightAnswer = rightAnswer;
   randomOrder.forEach((text, index) => {
     const option = document.createElement("div");
     option.classList.add("answer");
@@ -161,7 +161,7 @@ function genQuestion(data) {
         if (activeQuestion) return;
         activeQuestion = true;
         checkAnswer(text, rightAnswer);
-        globalRightAnswer = rightAnswer;
+
         showCorrectAnswer(document.querySelectorAll(".answer"), rightAnswer);
         if (currentRound === 3 && !isGameOver) {
           setTimeout(() => {
@@ -298,9 +298,15 @@ function gameOver() {
     const restartButton = document.createElement("button");
     restartButton.classList.add("restartQuiz");
 
-    document.querySelector(".quiz-container__gameboard__cat").append(restartButton);
+
+    document
+      .querySelector(".quiz-container__gameboard__cat")
+      .append(restartButton);
 
     restartButton.innerHTML = "Play again?";
+
+    showCorrectAnswer(document.querySelectorAll(".answer"), globalRightAnswer);
+
 
     restartButton.addEventListener("click", () => {
       window.location.reload();
