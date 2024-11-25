@@ -190,6 +190,13 @@ h1 {
   transition: all 1s linear;
 }
 
+#time-left {
+  transform: translateY(-50%);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-text);
+}
+
 /* Färger */
 .generalKnowledge {
   background-color: var(--generalKnowledge-color);
