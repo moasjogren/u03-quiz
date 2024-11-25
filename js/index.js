@@ -268,12 +268,15 @@ function updateScore() {
 function startCountdown() {
   document.querySelector(".quiz-container__gameboard__timer").style.display =
     "block";
-  secondsLeft = quizDuration;
+    const timeLeftDisplay = document.getElementById("time-left");
+    secondsLeft = quizDuration;
+    timeLeftDisplay.textContent = `${secondsLeft}s`;
   document.querySelector("#timer").style.width = "100%";
   document.getElementById("timer").style.backgroundColor = "#90EE90";
 
   countdownInterval = setInterval(() => {
     if (secondsLeft > 0) {
+      timeLeftDisplay.textContent = `${secondsLeft}s`;
       if (secondsLeft < 6) {
         document.getElementById("timer").style.backgroundColor = "#ff0000";
       } else if (secondsLeft < 16) {
@@ -289,6 +292,7 @@ function startCountdown() {
         (secondsLeft / quizDuration) * 100
       }%`;
     } else {
+      timeLeftDisplay.textContent = `Time's up! `;
       isGameOver = true;
       setTimeout(() => {
         gameOver();
