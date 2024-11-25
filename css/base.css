@@ -346,7 +346,7 @@ h1 {
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-text: #ffffff;
-    /* --quiz-bubble: #521616;
+    --quiz-bubble: #521616;
     --quiz-bubble-hover: #671b1b;
     --generalKnowledge-color: #003b76;
     --geography-color: #764c00;
@@ -355,7 +355,7 @@ h1 {
     --music-color: #5e0800;
     --history-color: #4a004a;
     --animals-color: #827500;
-    --science-color: #006a76; */
+    --science-color: #006a76;
   }
 
   .quiz-container__gameboard {
