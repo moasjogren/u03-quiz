@@ -50,7 +50,7 @@ h1 {
 .quiz-container__gameboard__categories-h2 {
   color: var(--primary-text);
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 .quiz-container__life {
   margin-top: -40px;
@@ -268,7 +268,7 @@ h1 {
 
 .restartQuiz {
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: -5%;
   rotate: -20deg;
   background-color: white;
@@ -288,8 +288,15 @@ h1 {
     position: absolute;
     right: 0;
   }
+  .quiz-container__gameboard__categories-h2 {
+    font-size: 4rem;
+  }
   .quiz-container__life img {
     width: 50px;
+  }
+  .cat-image {
+    height: 100px;
+    width: 95px;
   }
   .quiz-container__gameboard__categories {
     text-align: center;
@@ -321,16 +328,33 @@ h1 {
     height: 200px;
   }
   .restartQuiz {
-    left: 15%;
+    left: 18%;
   }
 }
 
 /* DESKTOP */
+@media (min-width: 1060px) {
+  .quiz-container__gameboard__categories-h2 {
+    font-size: 5rem;
+  }
+  .cat-image {
+    height: 120px;
+    width: 105px;
+    transform: translateX(-50px);
+  }
+  .restartQuiz {
+    left: 15%;
+    top: -2%;
+    padding: 3rem 3rem;
+    font-size: 2rem;
+  }
+}
+/* Dark Mode */
 
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-text: #ffffff;
-    --quiz-bubble: #521616;
+    /* --quiz-bubble: #521616;
     --quiz-bubble-hover: #671b1b;
     --generalKnowledge-color: #003b76;
     --geography-color: #764c00;
@@ -339,7 +363,7 @@ h1 {
     --music-color: #5e0800;
     --history-color: #4a004a;
     --animals-color: #827500;
-    --science-color: #006a76;
+    --science-color: #006a76; */
   }
 
   .quiz-container__gameboard {
