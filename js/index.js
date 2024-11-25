@@ -50,7 +50,7 @@ function getRandomOrder(arr) {
 
 function changeCatImg(img) {
   const catImg = document.querySelector(".cat-image");
-  catImg.src = `./img/cat${img}.png`;
+  catImg.src = `./img-min/cat${img}.png`;
   catImg.style.scale = "0.3";
   setTimeout(() => {
     catImg.style.scale = "1";
@@ -62,7 +62,7 @@ function createCats() {
   randomCats.forEach((cat) => {
     let genDivs = document.createElement("div");
     let genImg = document.createElement("img");
-    genImg.src = `./img/${cat}.png`;
+    genImg.src = `./img-min/${cat}.png`;
     genImg.alt = `${cat} icon`;
     document.querySelector(".quiz-container__gameboard__categories").append(genDivs);
     genDivs.append(genImg);
@@ -284,7 +284,7 @@ function decreaseTime() {
 
 function gameOver() {
   const gameOverLogo = document.createElement("img");
-  gameOverLogo.src = "./img/gameOver.png";
+  gameOverLogo.src = "./img-min/gameOver.png";
   gameOverLogo.alt = "Game over image";
   const div = document.createElement("div");
   div.classList.add("gameOverDiv");
